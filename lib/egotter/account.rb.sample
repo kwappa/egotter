@@ -1,0 +1,12 @@
+module Egotter
+  LOGIN           = '{YOUR_NAME}'
+  CONSUMER_KEY    = '{YOUR_CONSUMER_KEY   }'
+  CONSUMER_SECRET = '{YOUR_CONSUMER_SECRET                     }'
+  ACCESS_TOKEN    = '{YOUR_ACCESS_TOKEN                               }'
+  ACCESS_SECRET   = '{YOUR_ACCESS_SECRET                      }'
+  DB_CONNECTION   = {
+    :production     => 'sqlite://path_to_production.db'
+    :development    => 'sqlite://path_to_developoment.db',
+    :test           => 'sqlite://path_to_test.db'
+  }
+end
