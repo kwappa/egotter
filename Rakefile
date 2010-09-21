@@ -18,9 +18,8 @@ namespace :db do
     args.with_defaults(:environment => 'test')
     DB = db_connect args.environment
     version = DB[:schema_info].first[:version]
-    puts "Database Version: #{version} (environment: #{args.environment}"
+    puts "Database Version: #{version} (environment: #{args.environment})"
   end
-
 end
 
 desc "run spec"
@@ -31,10 +30,4 @@ namespace :spec do
     t.verbose = true
     t.spec_opts = ['-fs', '-c']
   end
-end
-
-def db_connect environment
-  param = Egotter::DB_CONNECTION[environment.to_sym]
-  raise ArgumentError unless param
-  Sequel.connect param
 end

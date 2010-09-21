@@ -9,6 +9,7 @@ $: << EGOTTER_ROOT
 
 require 'lib/egotter/account'
 require 'lib/egotter/client'
+require 'lib/egotter/model'
 
 include Egotter
 

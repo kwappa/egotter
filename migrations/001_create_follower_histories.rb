@@ -6,7 +6,7 @@ Sequel.migration do
       String      :followers,   :text => true
       String      :followed,    :text => true
       String      :removed,     :text => true
-      DateTime    :created_at
+      DateTime    :created_at,  :null => false, :default => :CURRENT_TIMESTAMP
     end
   end
 
