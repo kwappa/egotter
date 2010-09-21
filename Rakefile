@@ -8,7 +8,7 @@ namespace :db do
     require 'sequel/extensions/migration'
     args.with_defaults(:environment => 'test', :version => nil)
     options = Hash.new
-    options.store :version, args.version.to_i if args.version
+    options.store :target, args.version.to_i if args.version
     DB = db_connect args.environment
     Sequel::Migrator.run(DB, File.join(EGOTTER_ROOT, 'migrations'), options)
   end

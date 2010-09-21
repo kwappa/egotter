@@ -2,9 +2,9 @@ Sequel.migration do
 
   up do
     run <<SQL
-  CREATE TABLE `follower_histories` (
+  CREATE TABLE `following_histories` (
     `id` integer PRIMARY KEY AUTOINCREMENT,
-    `followers` text,
+    `followings` text,
     `followed` text,
     `removed` text,
     `created_at` TimeStamp NOT NULL DEFAULT CURRENT_TIMESTAMP
@@ -13,7 +13,7 @@ SQL
   end
 
   down do
-    drop_table :follower_histories
+    drop_table :following_histories
   end
 
 end
