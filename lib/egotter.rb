@@ -2,10 +2,13 @@
 require 'bundler'
 Bundler.setup
 require 'rubytter'
+autoload :Sequel, 'sequel'
 
-$: << File.dirname(File.expand_path(__FILE__))
-require 'egotter/account'
-require 'egotter/client'
+EGOTTER_ROOT = File.join(File.dirname(File.expand_path(__FILE__)), '..')
+$: << EGOTTER_ROOT
+
+require 'lib/egotter/account'
+require 'lib/egotter/client'
 
 include Egotter
 
