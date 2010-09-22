@@ -9,11 +9,23 @@ $: << EGOTTER_ROOT
 
 require 'lib/egotter/account'
 require 'lib/egotter/client'
-require 'lib/egotter/model'
 
 include Egotter
 
 module Egotter
-  class Egotter
+
+  def db_connect environment
+    param = DB_CONNECTION[environment.to_sym]
+    raise ArgumentError unless param
+    db = Sequel.connect param
+    require 'lib/egotter/model'
+    return db
   end
+
+  class Egotter
+    def initialize environment = 'development'
+      @db = db_connect environment
+    end
+  end
+
 end
