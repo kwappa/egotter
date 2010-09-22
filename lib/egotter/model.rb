@@ -4,10 +4,17 @@ module Egotter
   module ModelHelper
 
     def save_if_different name, data
-      if last
-        return false if JSON.parse(last["#{name}_list".to_sym]) == data
+      last_record = last
+      if last_record
+        last_list = JSON.parse(last_record["#{name}_list".to_sym])
+        return Hash.new if data == last_list
       end
       insert jsonize(name, data)
+      return Hash.new unless last_record
+      {
+        :inc => data - last_list,
+        :dec => last_list - data,
+      }
     end
 
     def jsonize name, data
@@ -36,6 +43,9 @@ module Egotter
     def self.save_followings followings_list
       save_if_different 'followings', followings_list
     end
+  end
+
+  class FollowDifference < Sequel::Model
   end
 
 end
