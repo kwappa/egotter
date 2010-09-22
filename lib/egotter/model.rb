@@ -46,6 +46,24 @@ module Egotter
   end
 
   class FollowDifference < Sequel::Model
+    extend ModelHelper
+
+    def self.save_differences followers, followings
+      result = Hash.new
+      result = {
+        :followed  => followers[:inc],
+        :removed   => followers[:dec],
+        :following => followings[:inc],
+        :removing  => followings[:dec],
+      }
+      save_data = result.inject({}) do |r, v|
+        r.store v[0], JSON.generate(v[1]) if v[1]
+        r
+      end
+      return false if save_data.empty?
+      insert save_data
+    end
+
   end
 
 end
