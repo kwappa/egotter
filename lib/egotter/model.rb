@@ -57,7 +57,7 @@ module Egotter
         :removing  => followings[:dec],
       }
       save_data = result.inject({}) do |r, v|
-        r.store v[0], JSON.generate(v[1]) if v[1]
+        r.store v[0], JSON.generate(v[1]) if v[1] && !v[1].empty?
         r
       end
       return false if save_data.empty?
